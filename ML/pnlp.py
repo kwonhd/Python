@@ -52,7 +52,7 @@ copus[:10]
 #getPOS(t)
 
 # %%
-# 단어 행렬 CVOW
+# 단어 행렬 CBOW
 from sklearn.feature_extraction.text import CountVectorizer,TfidfVectorizer
 #CountVectorizer =>숫자세서 벡터화 / TfidfVectorizer=>많이 나오는 단어 없애기
 cvect = CountVectorizer()
@@ -77,6 +77,34 @@ plt.imshow(cvtable[:100,:100])
 cdf = pd.DataFrame(cvtable[:100,:100])
 cdf
 #%%
-tdf = pd.DataFrame(tcvtable[:100,:100])
+tdf = pd.DataFrame(tvtable[:100,:100])
 tdf
 # %%
+cbdf = pd.DataFrame(cvtable)
+print(cvect.vocabulary_)
+voca = cvect.vocabulary_
+vosort={k:v for k, v in sorted(voca.items(),key=lambda item : item[1])} # 람다식
+cols = vosort.keys()
+cbdf = pd.DataFrame(cvtable,columns=cols)
+cbdf
+# %% 유사도 찾기
+from sklearn.metrics.pairwise import cosine_similarity,manhattan_distances #코사인, 맨하탄
+#%%
+def getCosim(v1,v2): # 운수좋은날 vector로 
+    cosim = cosine_similarity(v1,v2)
+    return (cosim)
+v1=cbdf.values
+csimv = getCosim(v1,v1) #본인과 본인 넣기, 같은 글임
+print(csimv.shape)
+csimv[2]
+
+# %%
+import numpy as np
+simtxt = np.where(csimv[2]>0.1) #() 변경 시 단어 변경되어 유사도 탐색 및 비슷한 문장 추천
+#%%
+for sim in simtxt[0]:
+    print(luckys[sim])
+    print('-'*30)
+    print(np.round(csimv[2][sim],2),',',luckys[sim]) # 유사도 몇인지 파악
+    print('-'*30)
+#%%
