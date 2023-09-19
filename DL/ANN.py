@@ -35,7 +35,6 @@ plt.hist(y_train)
 #모델결정 ANN
 layers=[
     tf.keras.layers.Flatten(input_shape=(28,28)),
-    tf.keras.layers.Dense(128,activation='relu'),
     tf.keras.layers.Dense(10,activation='softmax') # n개 알고싶을 때, 2개는 시그모이드
 ]
 model = tf.keras.models.Sequential(layers)
