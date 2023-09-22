@@ -76,9 +76,9 @@
                             - 컴포넌트
                             - 오브젝트 
                     - 작동 다이어그램
-                        * activity 
-                        * usecase
-                        * sequence
+                        * activity : 사용자나 객체의 행동위주 다이어그램
+                        * usecase : 실제 작동 프로세스 다이어그램
+                        * sequence : 순서에 따른 작동방식 다이어그램
                     - ERD
 
 
