@@ -1,15 +1,12 @@
 #!/usr/bin/python
 #-*- coding: utf-8 -*-
 
-from user import user
+from User import User
 
-class admin(user):
+class Customer(User):
     def __init__(self):
         pass
 
     def login(self, ):
-        pass
-
-    def Password(self, ):
         pass
 
